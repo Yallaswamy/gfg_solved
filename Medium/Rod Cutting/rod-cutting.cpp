@@ -10,24 +10,31 @@ using namespace std;
 
 class Solution{
   public:
-  
-  int solve(int arr[],int n,vector<int>&dp){
-      if(n==0) return 0;
-      if(dp[n]!=-1) return dp[n];
-      int ans=INT_MIN;
-      for(int i=0;i<n;i++){
-          int l=i+1;
-          ans=max(ans,arr[i]+solve(arr,n-l,dp));
+  int dp[1001][1001];
+  int solve(int ind,int *arr,int sum,int n){
+      if(ind>sum){
+          return 0;
       }
-      return dp[n]=ans;
+      
+      if(dp[ind][sum]!=-1) return dp[ind][sum];
+      if(sum==0)return 0;
+      int pick=0;
+      if(sum-ind>=0){
+           pick=arr[ind-1]+solve(ind,arr,sum-ind,n);
+      }
+      int nonpick=solve(ind+1,arr,sum,n);
+      return dp[ind][sum]=max(pick,nonpick);
   }
     int cutRod(int price[], int n) {
         //code here
-        vector<int>dp(n+1,-1);
-        int ans=solve(price,n,dp);
+        int ind=0;
+        int ans=0;
+        memset(dp,-1,sizeof(dp));
+        ans=solve(ind+1,price,n,n);
         return ans;
     }
 };
+
 
 //{ Driver Code Starts.
 
