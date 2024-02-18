@@ -11,16 +11,17 @@ public:
 	{
 	    // Complete the function
 	    map<int,int>mp;
+	    mp[0]=-1;
 	    int sum=0,ans=0;
-	    for(int i=0;i<n;i++){
+	     for(int i=0;i<n;i++){
 	        sum+=arr[i];
-	         if(mp.find(((sum%k)+k)%k)!=mp.end()){
-	             ans=max(i-mp[((sum%k)+k)%k],ans);
-	         }
-	         else{  
-	            mp[((sum%k)+k)%k]=i;
-	         }	         
-	         if(sum%k==0)ans=max(ans,i+1);
+	        int rem=sum%k;
+	        if(rem<0)
+	            rem+=k;
+	        if(mp.find(rem)!=mp.end())
+	            ans=max(ans,i-mp[rem]);
+	        else
+	            mp[rem]=i;
 	    }
 	    return ans;
 	}
