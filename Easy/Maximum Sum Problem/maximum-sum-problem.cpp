@@ -6,17 +6,18 @@ using namespace std;
 class Solution
 {
     public:
-    
+    //int a=0,b=0,c=0;
+    int dp[1000001];
     int slove(int n){
-        if(n<=2) return n;
-      int  a=max(n/2,slove(n/2));
-      int  b=max(n/3,slove(n/3));
-      int  c=max(n/4,slove(n/4));
-        return max(a+b+c,n);
+        if(n<=1) return n;
+        if(dp[n]!=-1) return dp[n];
+        return dp[n]=max(slove(n/2)+slove(n/3)+slove(n/4),n);
+     
     }
         int maxSum(int n)
         {
             //code here.
+            memset(dp,-1,sizeof(dp));
             int k=slove(n);
             return k;
         }
