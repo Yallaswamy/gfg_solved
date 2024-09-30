@@ -96,24 +96,20 @@ class Solution {
   public:
     // Function to return a list of integers denoting the node
     // values of both the BST in a sorted order.
-    void inorder(Node* root1,vector<int>&v){
-        if(root1==NULL){
-            return ;
-        }
-        inorder(root1->left,v);
-        v.push_back(root1->data);
-        inorder(root1->right,v);
+    void inorder(Node* root,vector<int>&v){
+        if(root==NULL) return ;
+        inorder(root->left,v);
+        v.push_back(root->data);
+        inorder(root->right,v);
     }
     vector<int> merge(Node *root1, Node *root2) {
         // Your code here
-        vector<int>v,v1;
-        inorder(root1,v);
+        vector<int>v1;
+        inorder(root1,v1);
         inorder(root2,v1);
-        for(int i=0;i<v1.size();i++){
-            v.push_back(v1[i]);
-        }
-        sort(v.begin(),v.end());
-        return v;
+        sort(v1.begin(),v1.end());
+        return v1;
+        
     }
 };
 
