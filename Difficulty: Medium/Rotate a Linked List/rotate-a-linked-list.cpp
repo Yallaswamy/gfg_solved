@@ -36,13 +36,9 @@ struct Node {
 
 */
 
-
-class Solution
-{
-    public:
-    //Function to rotate a linked list.
-    Node* rotate(Node* head, int k)
-    {
+class Solution {
+  public:
+    Node* rotate(Node* head, int k) {
         // Your code here
         Node* temp1=head;
         Node* temp=head;
@@ -70,8 +66,6 @@ class Solution
         return t;
     }
 };
-    
-
 
 
 //{ Driver Code Starts.
@@ -111,6 +105,7 @@ int main() {
         Solution ob;
         head = ob.rotate(head, k);
         printList(head);
+        cout << "~\n";
     }
     return 1;
 }
